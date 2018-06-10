@@ -1,35 +1,25 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import './App.css'
-import Header from './components/Header/Header'
-import Body from './components/Body/Body'
-import Footer from './components/Footer/Footer'
+import Likes from './components/Likes/Likes'
+import { Route, Switch } from 'react-router-dom'
+import Menu from './components/Menu/Menu'
+import SavedMp3 from './components/SavedMp3/SavedMp3'
+import NotFound from './components/NotFound/NotFound'
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      likes: 0,
-      name: 'Andrew'
-    }
-  }
-
   render () {
-    const {likes, name} = this.state
-
     return (
-      <div>
-        <Header name={name} likes={likes}/>
-        <Body addLike={this.newLike.bind(this)}/>
-        <Footer copyright='MIT' date={new Date()}/>
-      </div>
+      <Fragment>
+        <h1>Header</h1>
+        <Route path='/' component={Menu}/>
+        <Switch>
+          <Route path='/likes' component={Likes}/>
+          <Route path='/saved/:mp3Id' component={SavedMp3}/>
+          <Route path='/saved' component={SavedMp3}/>
+          <Route path='*' component={NotFound}/>
+        </Switch>
+      </Fragment>
     )
-  }
-
-  newLike () {
-    this.setState({
-      likes: this.state.likes + 1
-    })
   }
 }
 
