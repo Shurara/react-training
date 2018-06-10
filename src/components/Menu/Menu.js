@@ -9,6 +9,7 @@ class Menu extends Component {
         <ul>
           <li><Link to='/likes'>Likes</Link></li>
           <li><Link to='/saved'>Saved MP3</Link></li>
+          <li><Link to='/profile'>Profile</Link></li>
         </ul>
       </Fragment>
     )
